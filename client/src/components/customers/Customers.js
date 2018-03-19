@@ -11,8 +11,8 @@ class Customers extends React.Component {
 
   componentDidMount() {
     fetch('/api/customers')
-      .then(res => console.log(res.json()))
-      .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)))
+      .then(res => res.json())
+      .then(customers => this.setState({ customers }, () => console.log('Customers fetched...', customers)))
   }
 
 
@@ -20,6 +20,11 @@ class Customers extends React.Component {
     return (
       <div >
         <h2>Customers</h2>
+        <ul>
+          {this.state.customers.map(customer =>
+            <li key={customer.id}>{customer.firstName} {customer.lastName}</li>
+          )}
+        </ul>
       </div>
     );
   }
